@@ -1,0 +1,51 @@
+﻿@page "/operaciones"
+
+<h1>Operaciones Básicas</h1>
+<br />
+
+
+<!--Capturando números-->
+<label>Ingrese el primer número:</label>
+<input @bind="primerNumero" />
+<br />
+
+<label>Ingrese el segundo número:</label>
+<input @bind="segundoNumero" />
+<br />
+<br />
+
+<!--Imprimiendo resultados-->
+<pre> 
+<strong>La suma es:</strong> @suma
+<strong>La resta es:</strong> @resta
+<strong>La multiplicación es:</strong> @producto
+</pre>
+
+<button @onclick="Calcular">Calcular</button>
+<button @onclick="Limpiar">Nuevo</button>
+
+@code {
+    private float suma;
+    private float resta;
+    private float producto;
+
+    [Parameter]
+    public float primerNumero { get; set; }
+
+    [Parameter]
+    public float segundoNumero { get; set; }
+
+    private void Calcular()
+    {
+        suma = primerNumero + segundoNumero;
+        resta = primerNumero - segundoNumero;
+        producto = primerNumero * segundoNumero;
+    }
+
+    private void Limpiar()
+    {
+        primerNumero = 0;
+        segundoNumero = 0;
+        Calcular();
+    }
+}
